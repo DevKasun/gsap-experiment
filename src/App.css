@@ -8,7 +8,12 @@
     color: #ffffff;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
+    scroll-behavior: smooth;
     background-color: #111927;
     background-image: 
         radial-gradient(at 47% 33%, hsl(162.00, 77%, 40%) 0, transparent 59%), 
