@@ -29,7 +29,13 @@ h1 {
 	font-size: 2.5rem;
 }
 
-.char {
+.typewriter-char {
+	opacity: 0;
+	font-size: 2.5rem;
+	display: inline-block;
+}
+
+.cursor {
 	opacity: 0;
 	font-size: 2.5rem;
 }

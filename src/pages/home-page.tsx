@@ -3,7 +3,10 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { animateHeroBoxes } from '../animations/hero-animations';
+import {
+	animateHeroBoxes,
+	animateHeroHeader,
+} from '../animations/hero-animations';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,31 +37,12 @@ const HomePage: React.FC = () => {
 
 	useGSAP(() => {
 		if (heoHeaderRef.current) {
-			const chars = heoHeaderRef.current.querySelectorAll('.char');
-			gsap.fromTo(
-				chars,
-				{ opacity: 0 },
-				{
-					opacity: 1,
-					duration: 0.05,
-					stagger: 0.1,
-					ease: 'none',
-					repeat: -1,
-					yoyo: true,
-				}
-			);
-			gsap.to(heoHeaderRef.current.querySelector('.cursor'), {
-				opacity: 0,
-				repeat: -1,
-				yoyo: true,
-				duration: 5,
-				ease: 'none',
-			});
+			animateHeroHeader(heoHeaderRef.current);
 		}
 	});
 
 	const text = 'Typewriter Effect'.split('').map((char, index) => (
-		<span key={index} className='char'>
+		<span key={index} className='typewriter-char'>
 			{char === ' ' ? '\u00A0' : char}
 		</span>
 	));
@@ -67,7 +51,10 @@ const HomePage: React.FC = () => {
 		<>
 			<Section>
 				<div className='content sec-1' ref={section1ref}>
-					<h1 ref={heoHeaderRef}>{text}</h1>
+					<h1 className='hero-header' ref={heoHeaderRef}>
+						{text}
+						<span className='cursor'>|</span>
+					</h1>
 					<div className='hero-box' ref={heroBox1Ref}></div>
 					<div className='hero-box' ref={heroBox2Ref}></div>
 					<div className='hero-box' ref={heroBox3Ref}></div>
